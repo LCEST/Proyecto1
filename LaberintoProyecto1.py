@@ -2,6 +2,7 @@
 #16/02/2018
 
 #Luis Esturban 17256
+#Carlos Chew 17507
 
 #Contiene la forma del laberinto
 #1:Pared, 0:Camino
@@ -72,3 +73,24 @@ def creaLab(fLaberinto) :
     lista = [ x[:-1] if x[-1] == "\n" else x for x in lista]
     lista = [[int(ch) for ch in x] for x in lista]
     return lista
+#Metodo para poder imprimir las paredes del laberinto
+def imprimeLab(laberinto):
+    for x in laberinto:
+        for y in x:
+            print(y,"")
+        print()
+laberinto = creaLab(fLaberinto)
+#Metodo para recorrer el laberitinto
+#Avanza media ves encuentre camino de 1
+#Si es 0 no puede avanzar
+#Al encontrar el numero 3 llegara a su fin
+def recorrido(i, j):
+    if laberinto[i][j] == 3:
+        return [(i, j)]
+    if laberinto[i][j] == 1:
+        return []
+    laberinto[i][j] = -1
+#Para ir al Norte
+    if i > 0 and laberinto[i - 1][j] in [0, 3]:
+        camino = recorrido(i - 1, j)
+        if camino: return [(i, j)] + camino
