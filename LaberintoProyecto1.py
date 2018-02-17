@@ -94,3 +94,17 @@ def recorrido(i, j):
     if i > 0 and laberinto[i - 1][j] in [0, 3]:
         camino = recorrido(i - 1, j)
         if camino: return [(i, j)] + camino
+#Para ir al Este
+    if j < len(laberinto[i]) - 1 and laberinto[i][j + 1] in [0, 3]:
+        camino = recorrido(i, j + 1)
+        if camino: return [(i, j)] + camino
+#Para ir al Sur 
+    if i < len(laberinto) - 1 and laberinto[i + 1][j] in [0, 3]:
+        camino = recorrido(i + 1, j)
+        if camino: return [(i, j)] + camino
+#Para ir al Oeste
+    if j > 0 and laberinto[i][j - 1] in [0, 3]:
+        camino = recorrido(i, j - 1) 
+        if camino: return [(i, j)] + camino
+    return []
+for x in recorrido(59,59) : print(x)
